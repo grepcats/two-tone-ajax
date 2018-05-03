@@ -3,31 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TwoToneAjax.Models;
 
 namespace TwoToneAjax.Controllers
 {
     public class HomeController : Controller
     {
+
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult About()
+        public IActionResult HelloAjax()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            return Content("Henlo from the supernintendo Chalmers", "text/plain");
         }
 
-        public IActionResult Contact()
+        public IActionResult Sum(int firstNumber, int secondNumber)
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return Content((firstNumber + secondNumber).ToString(), "text/plain");
         }
 
-        public IActionResult Error()
+        public IActionResult DisplayObject()
+        {
+            Destination destination = new Destination("Tokyo", "Japan", 1);
+            return Json(destination);
+        }
+
+        public IActionResult DisplayViewWithAjax()
         {
             return View();
         }
