@@ -9,6 +9,7 @@ namespace TwoToneAjax.Controllers
 {
     public class HomeController : Controller
     {
+        private TwoToneAjaxDbContext db = new TwoToneAjaxDbContext();
 
         public IActionResult Index()
         {
@@ -34,5 +35,13 @@ namespace TwoToneAjax.Controllers
         {
             return View();
         }
+
+        public IActionResult RandomDestinationList(int destinationCount)
+        {
+            var randomDestinationList = db.Destinations.OrderBy(r => Guid.NewGuid()).Take(destinationCount);
+            return Json(randomDestinationList);
+        }
+
+
     }
 }
